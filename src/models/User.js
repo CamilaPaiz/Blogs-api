@@ -6,7 +6,7 @@ const User = sequelize.define('User', {
         primaryKey:true,
         type:DataTypes.INTEGER
        },
-       display_name: {
+       displayName: {
         allowNull: false,
         type: DataTypes.STRING,
        },
@@ -19,7 +19,7 @@ const User = sequelize.define('User', {
       type: DataTypes.STRING,
     },
     image:{
-      type:DataTypes.image,
+      type:DataTypes.STRING,
     }
 },
 {
