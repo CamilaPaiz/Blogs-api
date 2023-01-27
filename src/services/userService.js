@@ -32,7 +32,7 @@ const getByUserEmail = async (email) => {
 };
 
 const getByUserId = async (id) => {
-    const userId = await User.findByPK(id);
+    const userId = await User.findByPK(id, { attributes: { eclude: ['password'] } });
     return userId;
 };
 
