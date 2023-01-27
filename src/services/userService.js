@@ -1,18 +1,28 @@
-const jwt = require('jsonwebtoken');
+/* const jwt = require('jsonwebtoken'); */
 const { User } = require('../models');
 
-const secret = process.env.JWT_SECRET || 'suaSenhaSecreta';
-const jwtConfig = { algorithm: 'HS256', expiresIn: '15min' };
+ /* const { validateSchema } = require('./validations/schemas');
+const errorMap = require('../utils/errorMap');  */
 
-const createUser = async ({ email, password }) => {
-    const user = await User.create({ email, password });
-    const { password: _password, ...userWithoutPassword } = user;
-    const token = jwt.sign({ data: userWithoutPassword }, secret, jwtConfig);
-    return { token };
+/* const secret = process.env.JWT_SECRET || 'suaSenhaSecreta';
+const jwtConfig = { algorithm: 'HS256', expiresIn: '15min' }; */
+
+const createUser = async ({ email, password, displayName, image }) => {
+    const user = await User.create({ email, password, displayName, image });
+    /* const { password: _password, ...userWithoutPassword } = user;
+    const token = jwt.sign({ data: userWithoutPassword }, secret, jwtConfig); */
+  
+ /* const { error } = validateSchema.validate(email, password, displayName, image);
+  if (error) {
+    console.log(error);
+    return errorMap(error.message);
+  }  */
+
+    return { user };
 };
 
 const getUsers = async () => {
-    const user = await User.getAll();
+    const user = await User.findAll({ attributes: { exclude: ['password'] } });
     return user;
 };
 
