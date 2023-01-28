@@ -13,7 +13,13 @@ as: 'user',
 };
 
 const getByIdPost = async (id) => {
-const postId = await BlogPost.findByPK({ where: { id } });
+const postId = await BlogPost.findOne({ 
+    where: { id }, 
+    include: [{ model: User,
+        as: 'user', 
+                    attributes: { exclude: ['password'] } },
+                     { model: Category, as: 'categories', through: { attributes: [] } }],
+});
 return postId;
 };
 

@@ -19,6 +19,6 @@ app.get('/user/:id', authenticateMiddleware, userController.getByUserId);
 app.get('/categories', authenticateMiddleware, categoryController.getCategory);
 
 app.get('/post', authenticateMiddleware, postController.getPost);
-app.get('post/:id', postController.getByIdPost);
+app.get('/post/:id', authenticateMiddleware, postController.getByIdPost);
 app.use(errorMiddleware); // sempre por último
 module.exports = app;
