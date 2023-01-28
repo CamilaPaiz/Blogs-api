@@ -12,7 +12,6 @@ app.post('/login', loginController.login);
 
 app.post('/user', userController.createUser);
 app.get('/user', authenticateMiddleware, userController.getUsers);
-// É importante exportar a constante `app`,
-// para que possa ser utilizada pelo arquivo `src/server.js`
+app.get('/user/:id', authenticateMiddleware, userController.getByUserId);
 app.use(errorMiddleware); // sempre por último
 module.exports = app;

@@ -13,12 +13,21 @@ const createUser = async (req, res) => {
  };
  
  const getUsers = async (_req, res) => {
-     console.log(res.xablau, 'user'); 
      const user = await UserService.getUsers();
      return res.status(200).json(user);
+ };
+
+ const getByUserId = async (req, res) => {
+      const user = await UserService.getByUserId(req.params.id);
+        if (!user) {
+         return res.status(404).json({ message: 'User does not exist' });
+} 
+
+return res.status(200).json(user);
  };
 
  module.exports = {
     createUser,
     getUsers,
+    getByUserId,
  };

@@ -32,8 +32,12 @@ const getByUserEmail = async (email) => {
 };
 
 const getByUserId = async (id) => {
-    const userId = await User.findByPK(id, { attributes: { eclude: ['password'] } });
-    return userId;
+    const user = await User
+    .findOne({
+        where: { id },
+        attributes: { exclude: ['password'] },
+      });
+    return user;
 };
 
 module.exports = {
