@@ -2,11 +2,9 @@
 const { User } = require('../models');
 
 const schema = require('./validations/validateSchema');
-/* const errorType = require('../utils/errorMap'); */
 
 const createUser = async ({ email, password, displayName, image }) => {
     const error = schema.validateCreateUser({ email, password, displayName });
-    console.log('erro user service', error);
     if (error.type === 400) {
         return error;
     }
@@ -15,7 +13,6 @@ const createUser = async ({ email, password, displayName, image }) => {
       return { type: 409, message: 'User already registered' };
     }
     const user = await User.create({ email, password, displayName, image });
-    console.log('happy user', user);
     return { user };
 };
 

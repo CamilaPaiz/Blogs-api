@@ -7,8 +7,8 @@ const jwtConfig = { algorithm: 'HS256', expiresIn: '15min' };
 
 const createUser = async (req, res) => {
     const user = await UserService.createUser(req.body);
-    console.log('controller user', user);
      if (user.type === 400) return res.status(user.type).json({ message: user.message }); 
+     if (user.type === 409) return res.status(user.type).json({ message: user.message });
       const token = jwt.sign({ data: { userId: user.id } }, secret, jwtConfig); 
         return res.status(201).json({ token });
  };

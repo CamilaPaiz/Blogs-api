@@ -8,7 +8,6 @@ const getCategory = async (_req, res) => {
 
 const createCategory = async (req, res) => {
     const category = await CategoryService.createCategory(req.body);
-    console.log('controller', category);
      if (category.type === 400) {
         return res.status(category.type).json({ message: category.message });
     } 

@@ -9,7 +9,6 @@ const getCategory = async () => {
 
 const createCategory = async ({ name }) => {
       const error = schema.validateCategory({ name });
-      console.log('service', error);
     if (error.type === 400) {
         return error;
     }  
