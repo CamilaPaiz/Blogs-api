@@ -1,23 +1,21 @@
 /* const jwt = require('jsonwebtoken'); */
 const { User } = require('../models');
 
- /* const { validateSchema } = require('./validations/schemas');
-const errorMap = require('../utils/errorMap');  */
-
-/* const secret = process.env.JWT_SECRET || 'suaSenhaSecreta';
-const jwtConfig = { algorithm: 'HS256', expiresIn: '15min' }; */
+const schema = require('./validations/validateSchema');
+/* const errorType = require('../utils/errorMap'); */
 
 const createUser = async ({ email, password, displayName, image }) => {
+    const error = schema.validateCreateUser({ email, password, displayName });
+    console.log('erro user service', error);
+    if (error.type === 400) {
+        return error;
+    }
+    const userRegistered = await User.findOne({ where: { email } });
+    if (userRegistered) {
+      return { type: 409, message: 'User already registered' };
+    }
     const user = await User.create({ email, password, displayName, image });
-    /* const { password: _password, ...userWithoutPassword } = user;
-    const token = jwt.sign({ data: userWithoutPassword }, secret, jwtConfig); */
-  
- /* const { error } = validateSchema.validate(email, password, displayName, image);
-  if (error) {
-    console.log(error);
-    return errorMap(error.message);
-  }  */
-
+    console.log('happy user', user);
     return { user };
 };
 

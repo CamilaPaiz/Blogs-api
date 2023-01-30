@@ -17,6 +17,7 @@ app.get('/user', authenticateMiddleware, userController.getUsers);
 app.get('/user/:id', authenticateMiddleware, userController.getByUserId);
 
 app.get('/categories', authenticateMiddleware, categoryController.getCategory);
+app.post('/categories', authenticateMiddleware, categoryController.createCategory);
 
 app.get('/post', authenticateMiddleware, postController.getPost);
 app.get('/post/:id', authenticateMiddleware, postController.getByIdPost);
