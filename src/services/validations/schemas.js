@@ -7,7 +7,13 @@ const userSchema = Joi.object({
     password: Joi.string().min(6).required().label('password'),
   });
 
+  const postSchema = Joi.object({ 
+    title: Joi.string().required(),
+    content: Joi.string().required(),
+   });
+
 module.exports = {
   userSchema,
   categorySchema,
+  postSchema,
 };   

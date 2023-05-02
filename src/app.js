@@ -21,5 +21,8 @@ app.post('/categories', authenticateMiddleware, categoryController.createCategor
 
 app.get('/post', authenticateMiddleware, postController.getPost);
 app.get('/post/:id', authenticateMiddleware, postController.getByIdPost);
+app.put('/post/:id', authenticateMiddleware, postController.updatePost); 
+/* app.delete('/post/:id', postController.deletePost); */
+
 app.use(errorMiddleware); // sempre por último
 module.exports = app;

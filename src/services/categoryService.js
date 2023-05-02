@@ -1,5 +1,5 @@
 const { Category } = require('../models');
-  const schema = require('./validations/validateSchema');
+const schema = require('./validations/validateSchema');
 /* const errorType = require('../utils/errorMap');  */
 
 const getCategory = async () => {
